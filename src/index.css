@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-parchment: #F4EFE6;
+    --bg-card: #FAF7F2;
+    --ink-primary: #1C1916;
+    --ink-muted: #575047;
+    --border-hairline: #D5CBB8;
+    --accent-terracotta: #B84A27;
+    --accent-cypress: #284634;
+    --accent-brass: #947134;
+  }
+
+  body {
+    background-color: var(--bg-parchment);
+    color: var(--ink-primary);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(184, 74, 39, 0.04) 0%, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(148, 113, 52, 0.05) 0%, transparent 50%);
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: 'Fraunces', Georgia, serif;
+    font-feature-settings: "liga" 1, "dlig" 1, "swsh" 1;
+  }
+}
+
+/* Tactile Cotton Rag Paper Grain Overlay */
+.paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Architectural Crosshair Corner Accents */
+.crosshair-box {
+  position: relative;
+}
+.crosshair-box::before,
+.crosshair-box::after {
+  content: '+';
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1;
+  color: #9A8F7E;
+  pointer-events: none;
+  z-index: 10;
+}
+.crosshair-box::before {
+  top: -6px;
+  left: -5px;
+}
+.crosshair-box::after {
+  bottom: -6px;
+  right: -5px;
+}
+
+/* Hand-stamped ink effect */
+.ink-stamp {
+  border: 1.5px dashed currentColor;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Subtle custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EAE2D3;
+}
+::-webkit-scrollbar-thumb {
+  background: #B9AD99;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8A8175;
+}
+
+/* Print Receipt Styling */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-receipt,
+  #printable-receipt * {
+    visibility: visible;
+  }
+  #printable-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
